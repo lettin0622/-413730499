@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>右上角選單與畫布</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+  <script src="sketch.js" defer></script>
+</head>
+<body>
+  <!-- 選單 -->
+    <ul class="menu">
+    <li><a href="#home" onclick="hideIframe(); unlockMenu();">首頁</a></li>
+    <li><a href="#" onclick="showIframe(); setIframeSrc('ABOUT ME.png'); lockMenu();">自我介紹</a></li>
+    
+    <!-- 新增的我的學校選單 -->
+    <li class="dropdown">
+      <a href="#school" onmouseover="lockMenu()">我的學校</a>
+      <ul class="submenu">
+        <li><a href="https://www.tku.edu.tw/" target="iframe" onclick="showIframe(); lockMenu()">淡江大學</a></li>
+        <li><a href="https://www.et.tku.edu.tw/" target="iframe" onclick="showIframe(); lockMenu()">教育科技系</a></li>
+      </ul>
+    </li>
+  
+    <li class="dropdown">
+      <a href="#portfolio" onmouseover="lockMenu()">作品集</a>
+      <ul class="submenu">
+        <li><a href="https://lettin0622.github.io/20250221/" target="iframe" onclick="showIframe(); lockMenu()">魚魚</a></li>
+        <li><a href="https://lettin0622.github.io/20250307/" target="iframe" onclick="showIframe(); lockMenu()">繪畫高手</a></li>
+        <li><a href="https://lettin0622.github.io/20250314-1/" target="iframe" onclick="showIframe(); lockMenu()">跳起來！</a></li>
+        <li><a href="https://lettin0622.github.io/20250328/" target="iframe" onclick="showIframe(); lockMenu()">海底世界</a></li>
+      </ul>
+    </li>
+
+    <li class="dropdown">
+      <a href="#notes" onmouseover="lockMenu()">我的筆記</a>
+      <ul class="submenu">
+        <li><a href="https://hackmd.io/@LeeYiTing/SJkfGu_Jxx" target="iframe" onclick="showIframe(); lockMenu()">First</a></li>
+        <li><a href="https://hackmd.io/@LeeYiTing/r1i0dudkgx" target="iframe" onclick="showIframe(); lockMenu()">Second</a></li>
+        <li><a href="https://hackmd.io/@LeeYiTing/HkZ7q_dklx" target="iframe" onclick="showIframe(); lockMenu()">Third</a></li>
+        <li><a href="https://hackmd.io/@LeeYiTing/HyZmouu1xx" target="iframe" onclick="showIframe(); lockMenu()">Fourth</a></li>
+        <li><a href="https://hackmd.io/@LeeYiTing/Sy756dukeg" target="iframe" onclick="showIframe(); lockMenu()">期中作業</a></li>
+      </ul>
+    </li>
+    
+    <li><a href="https://lettin0622.github.io/math-exam/" target="iframe" onclick="showIframe(); lockMenu();">測驗卷</a></li>
+    <li><a href="#" onclick="showIframe(); lockMenu(); setIframeSrc('https://cfchen58.synology.me/%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%882023/1122/week15/20240527_092704.mp4');">教學影片</a></li>
+  </ul>
+
+  <div class="home-title">
+    淡江教科<br>TKUET
+  </div>
+  
+
+  <!-- iframe -->
+  <iframe name="iframe" class="content-frame" style="display: none;"></iframe>
+  <script>
+    // 隱藏 iframe
+    function hideIframe() {
+      document.querySelector('.content-frame').style.display = 'none';
+    }
+
+    // 顯示 iframe
+    function showIframe() {
+      document.querySelector('.content-frame').style.display = 'block';
+    }
+
+    // 設定 iframe 的 src
+    function setIframeSrc(url) {
+      document.querySelector('.content-frame').src = url;
+    }
+  </script>
+</body>
+</html>
+

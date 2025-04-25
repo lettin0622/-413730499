@@ -1,0 +1,143 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden; /* 防止滾動條 */
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /* 動畫放在最底層 */
+}
+
+.menu {
+  position: absolute;
+  top: 10px;
+  right: 100px; /* 距離視窗右邊框 100px */
+  list-style: none;
+  margin: 0;
+  padding: 15px; /* 增加選單內部間距 */
+  display: flex;
+  gap: 20px; /* 選單項目之間的間距 */
+  background-color: rgba(241, 192, 232, 0.95); /* 減少透明度 */
+  border-radius: 10px;
+  z-index: 2; /* 選單放在最上層 */
+  transition: transform 0.5s ease, opacity 0.5s ease; /* 滑入滑出效果 */
+  transform: translateY(-100%); /* 初始隱藏選單 */
+  opacity: 0;
+}
+
+.menu.visible {
+  transform: translateY(0); /* 顯示選單 */
+  opacity: 1;
+}
+
+.menu li {
+  position: relative;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #edede9; /* 文字顏色 */
+  font-size: 30px; /* 文字大小 */
+  font-weight: bold; /* 粗體文字 */
+  line-height: 50px; /* 選項高度 */
+  padding: 10px 15px; /* 增加內部間距 */
+  text-shadow: -2px -2px 0 #fb6f92, 2px -2px 0 #fb6f92, -2px 2px 0 #fb6f92, 2px 2px 0 #fb6f92; /* 粉紅色文字邊框，粗細 2 */
+  transition: transform 0.3s, color 0.3s;
+}
+
+.menu a:hover {
+  color: #ffffff; /* 滑鼠移動到文字上的顏色 */
+  transform: scale(1.1); /* 放大效果 */
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  background-color: rgba(241, 192, 232, 0.95); /* 子選單背景顏色 */
+  border-radius: 5px;
+  z-index: 3;
+}
+
+.submenu li {
+  margin: 5px 0;
+  text-align: center; /* 子選單文字置中 */
+}
+
+.submenu a {
+  white-space: nowrap; /* 禁止文字換行 */
+  display: block; /* 確保每個選項佔據一整行 */
+  padding: 5px 10px; /* 增加內距，讓選單更美觀 */
+  text-decoration: none; /* 移除預設的底線 */
+}
+
+.submenu a:hover {
+  background-color: #f0f0f0; /* 滑鼠懸停時的背景色 */
+}
+
+.dropdown:hover .submenu {
+  display: block; /* 修正子選單顯示問題 */
+}
+
+.content-frame {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%; /* 寬度為視窗的 80% */
+  height: 80%; /* 高度為視窗的 80% */
+  background-color: rgba(255, 255, 255, 0.2); /* 背景透明度 */
+  border: none;
+  z-index: 1; /* iframe 放在第二層 */
+  object-fit: cover; /* 讓內容自動適應容器並保持比例 */
+}
+
+
+.home-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #CAFFFF;
+  font-size: 120px; /* 字體超大 */
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 15px #CAFFFF, 0 0 30px #CAFFFF, 0 0 45px #CAFFFF;
+  z-index: 1;
+  pointer-events: auto; /* 允許滑鼠事件 */
+  transition: transform 0.5s ease; /* 平滑過渡效果 */
+  animation: waveMotion 2s infinite ease-in-out;
+}
+
+.home-title:hover {
+  transform: translate(-50%, -50%) scale(1.1); /* 放大 1.1 倍 */
+  transition: transform 0.3s ease; /* 平滑過渡效果 */
+}
+
+.home-title.hidden {
+  opacity: 0;
+}
+
+@keyframes waveMotion {
+  0% { transform: translate(-50%, -50%) translateX(0px); }
+  25% { transform: translate(-50%, -50%) translateX(15px); }
+  50% { transform: translate(-50%, -50%) translateX(0px); }
+  75% { transform: translate(-50%, -50%) translateX(-15px); }
+  100% { transform: translate(-50%, -50%) translateX(0px); }
+}
+
+/* 確保 ABOUT ME.png 的圖片大小適當 */
+.content-frame img {
+  max-width: 80%; /* 圖片寬度最多為 iframe 的 80% */
+  height: auto; /* 保持圖片比例 */
+  display: block;
+  margin: 20px auto; /* 置中圖片，並增加上下間距 */
+  border-radius: 10px; /* 可選：讓圖片有圓角 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 可選：增加陰影效果 */
+}
